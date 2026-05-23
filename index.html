@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Natalia Jagiełło — Tech Lead Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #F7F4EE;
+    --ink: #1A1A18;
+    --ink-muted: #5A5A55;
+    --ink-faint: #9A9A92;
+    --accent: #2E4A3E;
+    --accent-light: #C8D9D2;
+    --accent-pale: #EBF2EE;
+    --rule: rgba(26,26,24,0.12);
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* GRID LAYOUT */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+
+  /* HEADER */
+  header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+  }
+
+  .header-eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .header-subtitle {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    max-width: 460px;
+  }
+
+  .header-meta {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    line-height: 1.8;
+  }
+
+  .header-meta strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  /* CONTACT ROW */
+  .contact-bar {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    flex-wrap: wrap;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+  }
+
+  .contact-item svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* TWO-COLUMN BODY */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 4rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+
+  /* SECTION HEADINGS */
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--accent-light);
+  }
+
+  /* EXPERIENCE */
+  .experience-list { list-style: none; }
+
+  .exp-item {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  .exp-period {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  .exp-company {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 10px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .exp-bullets li {
+    padding-left: 1rem;
+    position: relative;
+    margin-bottom: 0.35rem;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent-light);
+    font-weight: 400;
+  }
+
+  /* SIDEBAR */
+  .sidebar { }
+
+  .sidebar-section {
+    margin-bottom: 2.5rem;
+  }
+
+  /* SKILLS */
+  .skill-group { margin-bottom: 1.25rem; }
+
+  .skill-group-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-faint);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    background: var(--accent-pale);
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 0.25rem 0.65rem;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  .tag.dark {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* EDUCATION */
+  .edu-item {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .edu-item:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin-bottom: 0.15rem;
+  }
+
+  .edu-school {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+  }
+
+  .edu-year {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  /* LANGUAGES */
+  .lang-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.85rem;
+  }
+
+  .lang-item:last-child { border-bottom: none; }
+
+  .lang-level {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+  }
+
+  /* CERTS */
+  .cert-item {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .cert-item:last-child { border-bottom: none; }
+
+  .cert-issuer {
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-left: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  /* ABOUT */
+  .about-text {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    line-height: 1.75;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; }
+    .body-grid { grid-template-columns: 1fr 240px; gap: 2.5rem; }
+    header { padding: 1.5rem 0 1.5rem; }
+  }
+
+  @media (max-width: 680px) {
+    .body-grid { grid-template-columns: 1fr; }
+    header { grid-template-columns: 1fr; }
+    .header-meta { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header>
+    <div>
+      <p class="header-eyebrow">Curriculum Vitae</p>
+      <h1>Natalia<br><em>Jagiełło</em></h1>
+      <p class="header-subtitle">Tech Lead Developer with 10+ years delivering scalable web &amp; mobile solutions across full-stack. From C# backends to React Native apps in live retail environments.</p>
+    </div>
+    <div class="header-meta">
+      <strong>Warsaw, Poland</strong>
+      Mountain Warehouse<br>
+      Tech Lead · since 2024<br>
+    </div>
+  </header>
+
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <span class="contact-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      Warsaw, Mazowieckie, Poland
+    </span>
+    <span class="contact-item">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+      Mountain Warehouse
+    </span>
+    <span class="contact-item">
+      <svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zM11 11H9V9h2v2zm4 0h-2V9h2v2z"/></svg>
+      linkedin.com/in/natalia-jagiełło
+    </span>
+    <span class="contact-item">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      10+ years experience
+    </span>
+  </div>
+
+  <!-- BODY -->
+  <div class="body-grid">
+
+    <!-- MAIN COLUMN -->
+    <main>
+
+      <!-- ABOUT -->
+      <div style="margin-bottom:3rem">
+        <p class="section-label">Profile</p>
+        <p class="about-text">Results-driven Lead Developer with a proven track record of leading development teams, driving technical strategy, and mentoring engineers to deliver high-quality, business-focused outcomes. Known for bridging the gap between business goals and technical execution — ensuring projects land on time, meet quality standards, and align with strategic priorities. Passionate about continuous improvement and fostering a collaborative, high-performance culture.</p>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div>
+        <p class="section-label">Experience</p>
+        <ul class="experience-list">
+
+          <li class="exp-item">
+            <div class="exp-header">
+              <h2 class="exp-title">Tech Lead Developer</h2>
+              <span class="exp-period">Aug 2024 – Present</span>
+            </div>
+            <p class="exp-company">Mountain Warehouse</p>
+            <ul class="exp-bullets">
+              <li>Leading end-to-end delivery of complex epics across mobile apps, backend services, and in-store system integrations.</li>
+              <li>Making architectural decisions around data synchronisation, authentication, performance, and reliability in distributed systems.</li>
+              <li>Driving code quality through reviews, testing standards, and pragmatic engineering practices.</li>
+              <li>Collaborating with Delivery Managers, Product, and Support teams to align priorities and manage risks.</li>
+              <li>Investigating and resolving production incidents including root cause analysis and corrective actions.</li>
+            </ul>
+          </li>
+
+          <li class="exp-item">
+            <div class="exp-header">
+              <h2 class="exp-title">IT Developer</h2>
+              <span class="exp-period">Nov 2016 – Jul 2024</span>
+            </div>
+            <p class="exp-company">Mountain Warehouse · 7 yrs 9 mos</p>
+            <ul class="exp-bullets">
+              <li>Designed, developed, and maintained web and mobile applications in ASP.NET Core, React.js, and React Native — pioneering the company's adoption of React Native.</li>
+              <li>Built and integrated APIs enabling seamless data flow between distributed services.</li>
+              <li>Designed and optimised SQL (MS SQL) and NoSQL (MongoDB, Realm) databases for performance and reliability.</li>
+              <li>Implemented RabbitMQ for asynchronous communication across services.</li>
+              <li>Automated deployments and managed scalability with Jenkins and Kubernetes on Linux.</li>
+              <li>Created comprehensive unit tests with xUnit and Jest.</li>
+            </ul>
+          </li>
+
+          <li class="exp-item">
+            <div class="exp-header">
+              <h2 class="exp-title">Junior IT Developer</h2>
+              <span class="exp-period">Oct 2015 – Oct 2016</span>
+            </div>
+            <p class="exp-company">Pentacomp</p>
+            <ul class="exp-bullets">
+              <li>Designed and developed web applications in ASP.NET MVC using C#.</li>
+              <li>Built user interfaces with JavaScript, jQuery, HTML, and CSS following UI/UX best practices.</li>
+              <li>Created and maintained SQL Server databases; developed T-SQL reports for business decision-making.</li>
+              <li>Acted as Scrum Master, facilitating agile ceremonies.</li>
+            </ul>
+          </li>
+
+        </ul>
+      </div>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- SKILLS -->
+      <div class="sidebar-section">
+        <p class="section-label">Skills</p>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Backend</p>
+          <div class="skill-tags">
+            <span class="tag dark">C# / .NET</span>
+            <span class="tag dark">ASP.NET Core</span>
+            <span class="tag">RabbitMQ</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Frontend &amp; Mobile</p>
+          <div class="skill-tags">
+            <span class="tag dark">React.js</span>
+            <span class="tag dark">React Native</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Data</p>
+          <div class="skill-tags">
+            <span class="tag dark">MongoDB</span>
+            <span class="tag">MS SQL</span>
+            <span class="tag">Realm</span>
+            <span class="tag">Ditto</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">DevOps &amp; Tools</p>
+          <div class="skill-tags">
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Jenkins</span>
+            <span class="tag">Git</span>
+            <span class="tag">Jira</span>
+            <span class="tag">xUnit</span>
+            <span class="tag">Jest</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-label">Leadership</p>
+          <div class="skill-tags">
+            <span class="tag dark">Team Lead</span>
+            <span class="tag">Mentoring</span>
+            <span class="tag">Scrum</span>
+            <span class="tag">Technical Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="sidebar-section">
+        <p class="section-label">Education</p>
+
+        <div class="edu-item">
+          <p class="edu-degree">MSc — Management &amp; Production Engineering</p>
+          <p class="edu-school">Wrocław University of Science and Technology</p>
+          <p class="edu-year">2014 – 2015</p>
+        </div>
+
+        <div class="edu-item">
+          <p class="edu-degree">BEng — Biomedical Engineering</p>
+          <p class="edu-school">Wrocław University of Science and Technology</p>
+          <p class="edu-year">2010 – 2014</p>
+        </div>
+      </div>
+
+      <!-- LANGUAGES -->
+      <div class="sidebar-section">
+        <p class="section-label">Languages</p>
+        <div class="lang-item">
+          <span>Polish</span>
+          <span class="lang-level">Native</span>
+        </div>
+        <div class="lang-item">
+          <span>English</span>
+          <span class="lang-level">Proficient · C2</span>
+        </div>
+        <div class="lang-item">
+          <span>Spanish</span>
+          <span class="lang-level">Elementary</span>
+        </div>
+      </div>
+
+      <!-- CERTIFICATIONS 
+      <div class="sidebar-section">
+        <p class="section-label">Certifications</p>
+        <div class="cert-item">
+          <span>MongoDB Data Modeling (M320)</span>
+          <span class="cert-issuer">MongoDB</span>
+        </div>
+        <div class="cert-item">
+          <span>MongoDB for .NET Developers</span>
+          <span class="cert-issuer">MongoDB</span>
+        </div>
+        <div class="cert-item">
+          <span>English C2 Certificate</span>
+          <span class="cert-issuer">EF / EFSET</span>
+        </div>
+        <div class="cert-item">
+          <span>Learning React.js</span>
+          <span class="cert-issuer">LinkedIn</span>
+        </div>
+      </div> -->
+
+    </aside>
+  </div>
+</div>
+</body>
+</html>
